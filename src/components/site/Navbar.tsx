@@ -16,7 +16,7 @@ export function Navbar() {
           <span className="grid place-items-center w-9 h-9 rounded-lg bg-brand text-brand-foreground shadow-elegant">
             <Leaf className="w-5 h-5" />
           </span>
-          <span className="font-serif text-lg font-bold text-brand-dark">NadhafaTech</span>
+          <span className="font-serif text-lg font-bold text-brand-dark">NadafaTech</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
