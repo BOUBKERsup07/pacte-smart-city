@@ -1,0 +1,175 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design System NadhafaTech (PACTE)
+ * Palette : vert intelligent — IoT urbain
+ * Tokens en oklch pour tout couleur, jamais de #hex en composants.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  /* Tokens métier NadhafaTech */
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-light: var(--brand-light);
+  --color-cta: var(--cta);
+  --color-cta-foreground: var(--cta-foreground);
+  --color-status-ok: var(--status-ok);
+  --color-status-warn: var(--status-warn);
+  --color-status-alert: var(--status-alert);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+
+  --shadow-elegant: 0 4px 20px oklch(0 0 0 / 0.08);
+  --shadow-glow: 0 8px 32px oklch(0.45 0.15 150 / 0.25);
+  --gradient-hero: linear-gradient(135deg, oklch(0.22 0.06 155) 0%, oklch(0.32 0.08 150) 100%);
+  --gradient-cta: linear-gradient(135deg, oklch(0.68 0.18 145) 0%, oklch(0.58 0.16 150) 100%);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Charte NadhafaTech */
+  --brand: oklch(0.40 0.10 150);          /* #1A6E3C primaire */
+  --brand-foreground: oklch(0.98 0 0);
+  --brand-dark: oklch(0.22 0.06 155);     /* #0D3B24 sombre */
+  --brand-light: oklch(0.96 0.03 150);    /* #E8F5E9 fond clair */
+  --cta: oklch(0.68 0.18 145);            /* #2ECC71 secondaire */
+  --cta-foreground: oklch(0.98 0 0);
+
+  --status-ok: oklch(0.68 0.18 145);
+  --status-warn: oklch(0.75 0.16 65);
+  --status-alert: oklch(0.60 0.22 25);
+
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.18 0.01 250);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.01 250);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.01 250);
+  --primary: oklch(0.40 0.10 150);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.96 0.03 150);
+  --secondary-foreground: oklch(0.22 0.06 155);
+  --muted: oklch(0.96 0.01 240);
+  --muted-foreground: oklch(0.50 0.02 250);
+  --accent: oklch(0.96 0.03 150);
+  --accent-foreground: oklch(0.22 0.06 155);
+  --destructive: oklch(0.60 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.92 0.01 240);
+  --input: oklch(0.92 0.01 240);
+  --ring: oklch(0.40 0.10 150);
+
+  --chart-1: oklch(0.40 0.10 150);
+  --chart-2: oklch(0.68 0.18 145);
+  --chart-3: oklch(0.75 0.16 65);
+  --chart-4: oklch(0.60 0.22 25);
+  --chart-5: oklch(0.55 0.10 240);
+
+  --sidebar: oklch(0.22 0.06 155);
+  --sidebar-foreground: oklch(0.96 0.01 240);
+  --sidebar-primary: oklch(0.68 0.18 145);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.28 0.06 155);
+  --sidebar-accent-foreground: oklch(0.98 0 0);
+  --sidebar-border: oklch(0.30 0.05 155);
+  --sidebar-ring: oklch(0.68 0.18 145);
+}
+
+.dark {
+  --background: oklch(0.18 0.02 155);
+  --foreground: oklch(0.96 0.01 240);
+  --card: oklch(0.22 0.03 155);
+  --card-foreground: oklch(0.96 0.01 240);
+  --popover: oklch(0.22 0.03 155);
+  --popover-foreground: oklch(0.96 0.01 240);
+  --primary: oklch(0.68 0.18 145);
+  --primary-foreground: oklch(0.18 0.02 155);
+  --secondary: oklch(0.28 0.04 155);
+  --secondary-foreground: oklch(0.96 0.01 240);
+  --muted: oklch(0.28 0.04 155);
+  --muted-foreground: oklch(0.70 0.02 240);
+  --accent: oklch(0.28 0.04 155);
+  --accent-foreground: oklch(0.96 0.01 240);
+  --destructive: oklch(0.60 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.68 0.18 145);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { font-family: var(--font-sans); }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, .font-serif { font-family: var(--font-serif); }
+}
+
+/* Animation particules LoRaWAN */
+@keyframes float-particle {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
+  50% { transform: translateY(-20px) translateX(10px); opacity: 0.8; }
+}
+.particle { animation: float-particle 6s ease-in-out infinite; }
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+.pulse-ring {
+  position: absolute; inset: 0; border-radius: 9999px;
+  border: 2px solid var(--cta);
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
