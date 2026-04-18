@@ -1,4 +1,5 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
 
 import appCss from "../styles.css?url";
 
@@ -18,6 +19,28 @@ function NotFoundComponent() {
           >
             Go home
           </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ErrorComponent({ error }: { error: Error }) {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <div className="max-w-md text-center">
+        <h1 className="text-4xl font-bold text-status-alert">Erreur</h1>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Une erreur est survenue</h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          {error.message || "Une erreur inattendue s'est produite."}
+        </p>
+        <div className="mt-6">
+          <Button
+            onClick={() => window.location.reload()}
+            className="inline-flex items-center justify-center rounded-md bg-brand px-4 py-2 text-sm font-medium text-brand-foreground transition-colors hover:bg-brand/90"
+          >
+            Réessayer
+          </Button>
         </div>
       </div>
     </div>
@@ -52,6 +75,7 @@ export const Route = createRootRoute({
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
+  errorComponent: ErrorComponent,
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {

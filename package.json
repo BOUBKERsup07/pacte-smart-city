@@ -93,5 +93,8 @@
     "react": "$react",
     "react-dom": "$react-dom",
     "react-is": "$react-is"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }

@@ -1,15 +1,16 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, lazy, Suspense } from "react";
 import {
   LayoutDashboard, Map as MapIcon, Trash2, Bell, Settings,
   LogOut, Battery, Signal, Download, Leaf, AlertTriangle, CheckCircle2, Truck,
 } from "lucide-react";
-import {
-  LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-} from "recharts";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+
+// Lazy loading des graphiques pour optimiser le bundle initial
+const AlertsChart = lazy(() => import("@/components/dashboard/DashboardCharts").then(m => ({ default: m.AlertsChart })));
+const FillTrendChart = lazy(() => import("@/components/dashboard/DashboardCharts").then(m => ({ default: m.FillTrendChart })));
 
 export const Route = createFileRoute("/dashboard")({
   head: () => ({
@@ -152,30 +153,18 @@ function DashboardPage() {
 
             <div className="rounded-xl bg-card border border-border shadow-elegant p-5">
               <h2 className="font-semibold text-brand-dark mb-4">Alertes / 7j</h2>
-              <ResponsiveContainer width="100%" height={220}>
-                <BarChart data={TREND_7D}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                  <XAxis dataKey="jour" stroke="currentColor" fontSize={12} />
-                  <YAxis stroke="currentColor" fontSize={12} />
-                  <Tooltip contentStyle={{ borderRadius: 8, border: "1px solid var(--border)" }} />
-                  <Bar dataKey="alertes" fill="var(--status-alert)" radius={[4, 4, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
+              <Suspense fallback={<div className="h-[220px] flex items-center justify-center text-muted-foreground text-xs">Chargement du graphique...</div>}>
+                <AlertsChart data={TREND_7D} />
+              </Suspense>
             </div>
           </div>
 
           {/* Tendance remplissage */}
           <div className="rounded-xl bg-card border border-border shadow-elegant p-5">
             <h2 className="font-semibold text-brand-dark mb-4">Taux de remplissage moyen — 7 derniers jours</h2>
-            <ResponsiveContainer width="100%" height={260}>
-              <LineChart data={TREND_7D}>
-                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                <XAxis dataKey="jour" stroke="currentColor" fontSize={12} />
-                <YAxis stroke="currentColor" fontSize={12} />
-                <Tooltip contentStyle={{ borderRadius: 8 }} />
-                <Line type="monotone" dataKey="remplissage" stroke="var(--brand)" strokeWidth={2.5} dot={{ r: 4, fill: "var(--cta)" }} />
-              </LineChart>
-            </ResponsiveContainer>
+            <Suspense fallback={<div className="h-[260px] flex items-center justify-center text-muted-foreground text-xs">Chargement du graphique...</div>}>
+              <FillTrendChart data={TREND_7D} />
+            </Suspense>
           </div>
 
           {/* Tableau */}
